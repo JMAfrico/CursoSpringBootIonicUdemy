@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Produto implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -24,6 +26,7 @@ public class Produto implements Serializable{
 	
 	private Double preco;
 	
+	@JsonBackReference //mapeia de produtos não busca categorias, já que o correto é de categoria buscar produtos
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA", //nome da tabela altomatica muitos pra muitos criada pelo JPA
 					  joinColumns = @JoinColumn(name="produto_id"),//chave primaria da tabela produto(classe onde estou)
