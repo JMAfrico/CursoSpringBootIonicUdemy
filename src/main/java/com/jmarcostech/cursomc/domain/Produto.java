@@ -30,7 +30,7 @@ public class Produto implements Serializable{
 	
 	private Double preco;
 	
-	@JsonBackReference //mapeia de produtos não busca categorias, já que o correto é de categoria buscar produtos
+	@JsonIgnore //mapeia de produtos não busca categorias, já que o correto é de categoria buscar produtos
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA", //nome da tabela altomatica muitos pra muitos criada pelo JPA
 					  joinColumns = @JoinColumn(name="produto_id"),//chave primaria da tabela produto(classe onde estou)
@@ -55,7 +55,7 @@ public class Produto implements Serializable{
 	}
 	
 	public Produto() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Produto(Integer id, String nome, Double preco) {
