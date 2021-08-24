@@ -33,6 +33,9 @@ public class Cliente implements Serializable{
 	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
 	
+	private List<Pedido> pedidos = new ArrayList<>();
+	
+	
 	
 	//um cliente pode ter vários telefones, então foi criada uma lista SET, onde não aceita repetiçao, ao invés de
 	//criar uma tabela só para telefones. No Diagrama UML, a classe Cliente deve ter a classe telefone. Nesse caso
@@ -109,6 +112,18 @@ public class Cliente implements Serializable{
 
 	public void setTipo(TipoCliente tipo) {
 		this.tipo = tipo.getCod();
+	}
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
+	public void setTipo(Integer tipo) {
+		this.tipo = tipo;
 	}
 
 	@Override
