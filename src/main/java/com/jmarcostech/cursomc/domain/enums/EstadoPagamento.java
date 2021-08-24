@@ -1,6 +1,6 @@
 package com.jmarcostech.cursomc.domain.enums;
 
-public enum TipoEstadoPagamento {
+public enum EstadoPagamento {
 
 	PENDENTE(1,"Pendente"),
 	QUITADO(2,"Quitado"),
@@ -9,11 +9,11 @@ public enum TipoEstadoPagamento {
 	private Integer cod;
 	private String status;
 	
-	private TipoEstadoPagamento() {
+	private EstadoPagamento() {
 		
 	}
 
-	private TipoEstadoPagamento(Integer cod, String status) {
+	private EstadoPagamento(Integer cod, String status) {
 		this.cod = cod;
 		this.status = status;
 	}
@@ -26,12 +26,12 @@ public enum TipoEstadoPagamento {
 		return status;
 	}
 	
-	public static TipoEstadoPagamento toEnum(Integer cod) {
+	public static EstadoPagamento toEnum(Integer cod) {
 		if(cod == null) {
 			return null;
 		}
 		
-		for(TipoEstadoPagamento x: TipoEstadoPagamento.values()) {
+		for(EstadoPagamento x: EstadoPagamento.values()) {
 			if(cod.equals(x.getCod())) {
 				return x;
 			}

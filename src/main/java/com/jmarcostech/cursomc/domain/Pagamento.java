@@ -4,21 +4,25 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import com.jmarcostech.cursomc.domain.enums.EstadoPagamento;
+
 @Entity
-public class Pagamento implements Serializable{
+@Inheritance(strategy = InheritanceType.JOINED)//mapear super classe
+public class Pagamento implements Serializable{//abstract pq na hora de instância um novo pagamento, só vai ser possível instanciar objetos pagamento com cartao ou boleto
 	private static final long serialVersionUID = 1L;
 
 	@Id
-
 	private Integer id;
 	private Integer estadoPagamento;
 	
 	@OneToOne
-	@JoinColumn(name = "pedido_id")
+	@JoinColumn(name = "pedido_id") // mapear de onde vem o numero do pedido
 	@MapsId
 	private Pedido pedido;
 	
@@ -28,10 +32,10 @@ public class Pagamento implements Serializable{
 	
 	
 
-	public Pagamento(Integer id, Integer estadoPagamento, Pedido pedido) {
+	public Pagamento(Integer id, EstadoPagamento estadoPagamento, Pedido pedido) {
 		super();
 		this.id = id;
-		this.estadoPagamento = estadoPagamento;
+		this.estadoPagamento = estadoPagamento.getCod();
 		this.pedido = pedido;
 	}
 
@@ -45,12 +49,12 @@ public class Pagamento implements Serializable{
 		this.id = id;
 	}
 
-	public Integer getEstadoPagamento() {
-		return estadoPagamento;
+	public EstadoPagamento getEstadoPagamento() {
+		return EstadoPagamento.toEnum(estadoPagamento);
 	}
 
-	public void setEstadoPagamento(Integer estadoPagamento) {
-		this.estadoPagamento = estadoPagamento;
+	public void setEstadoPagamento(EstadoPagamento estadoPagamento) {
+		this.estadoPagamento = estadoPagamento.getCod();
 	}
 
 	public Pedido getPedido() {
