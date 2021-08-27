@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.jmarcostech.cursomc.domain.Categoria;
+import com.jmarcostech.cursomc.dto.CategoriaDTO;
 import com.jmarcostech.cursomc.repositories.CategoriaRepository;
 import com.jmarcostech.cursomc.services.exceptions.DataIntegrityException;
 import com.jmarcostech.cursomc.services.exceptions.ObjectNotFoundException;
@@ -62,5 +63,8 @@ public class CategoriaService {
 		return categoriarepository.findAll(pageRequest);
 	}
 	
-	
+	//SERVICE QUE PASSA OS PARÂMETROS DA CATEGORIA, PARA CATEGORIADTO, PARA PODER SER VALIDADO PELO REQUEST
+	public Categoria fromDTO(CategoriaDTO objDTO) {
+		return new Categoria(objDTO.getId(),objDTO.getNome());
+	}
 }
