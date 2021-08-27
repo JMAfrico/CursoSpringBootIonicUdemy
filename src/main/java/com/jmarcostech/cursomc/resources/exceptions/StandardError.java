@@ -2,16 +2,19 @@ package com.jmarcostech.cursomc.resources.exceptions;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 //MÉTODO QUE ORGANIZA OS ERROS POR STATUS,MENSAGEM E TEMPO
 public class StandardError implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Integer status;
 	private String msg;
+	
 	private Long timeStamp;
 	
 	public StandardError() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public StandardError(Integer status, String msg, Long timeStamp) {
@@ -37,9 +40,11 @@ public class StandardError implements Serializable{
 		this.msg = msg;
 	}
 
+
 	public Long getTimeStamp() {
 		return timeStamp;
 	}
+
 
 	public void setTimeStamp(Long timeStamp) {
 		this.timeStamp = timeStamp;
