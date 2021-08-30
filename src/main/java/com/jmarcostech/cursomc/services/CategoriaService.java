@@ -37,10 +37,12 @@ public class CategoriaService {
 	
 	//SERVICE PARA ALTERAR CATEGORIA SE ELA JÁ EXISTIR
 	public Categoria update(Categoria obj) {
-		find(obj.getId());
-		return categoriarepository.save(obj);
-	}
+		Categoria newObj = find(obj.getId());
+		updateData(newObj , obj);
+		return categoriarepository.save(newObj);
+	}		
 	
+
 	//SERVICE PARA DELETAR CATEGORIA SE ELA JÁ EXISTIR
 	public void delete(Integer id) {
 		find(id);
@@ -66,5 +68,11 @@ public class CategoriaService {
 	//SERVICE QUE PASSA OS PARÂMETROS DA CATEGORIA, PARA CATEGORIADTO, PARA PODER SER VALIDADO PELO REQUEST
 	public Categoria fromDTO(CategoriaDTO objDTO) {
 		return new Categoria(objDTO.getId(),objDTO.getNome());
+	}
+	
+	//SERVICE QUE PUXA OS DADOS ORIGINAIS DO BANCO QUE PODEM SER ALTERADOS
+	private void updateData(Categoria newObj, Categoria obj) {
+		newObj.setNome(obj.getNome());
+
 	}
 }

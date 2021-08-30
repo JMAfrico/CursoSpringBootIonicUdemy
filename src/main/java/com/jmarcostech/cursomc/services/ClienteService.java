@@ -29,14 +29,14 @@ public class ClienteService {
 	
 	}
 	
-	//SERVICE PARA ALTERAR CATEGORIA SE ELA JÁ EXISTIR
+		//SERVICE PARA ALTERAR CLIENTE SE ELE JÁ EXISTIR
 		public Cliente update(Cliente obj) {
 			Cliente newobj = find(obj.getId());
 			updateData(newobj,obj);
 			return clienterepository.save(newobj);
 		}
 		
-		//SERVICE PARA DELETAR CATEGORIA SE ELA JÁ EXISTIR
+		//SERVICE PARA DELETAR CLIENTE SE ELE SE ELA JÁ EXISTIR
 		public void delete(Integer id) {
 			find(id);
 			try {
@@ -47,12 +47,12 @@ public class ClienteService {
 			}
 		}
 		
-		//SERVICE PARA LISTAR TODAS AS CATEGORIAS
+		//SERVICE PARA LISTAR TODOS CLIENTES
 		public List<Cliente> findAll() {
 			return clienterepository.findAll();
 		}
 		
-		//SERVICE PARA PAGINAR AS CATEGORIAS
+		//SERVICE PARA PAGINAR CLIENTES
 		public Page<Cliente> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
 			PageRequest pageRequest = PageRequest.of(page, linesPerPage,Direction.valueOf(direction),orderBy);
 			return clienterepository.findAll(pageRequest);
@@ -64,6 +64,7 @@ public class ClienteService {
 			return new Cliente(objDTO.getId(),objDTO.getNome(),objDTO.getEmail(),null,null);
 		}
 		
+		//SERVICE QUE PUXA OS DADOS ORIGINAIS DO BANCO QUE PODEM SER ALTERADOS
 		private void updateData(Cliente newObj, Cliente obj) {
 			newObj.setNome(obj.getNome());
 			newObj.setEmail(obj.getEmail());

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jmarcostech.cursomc.domain.Categoria;
+import com.jmarcostech.cursomc.domain.Cliente;
 import com.jmarcostech.cursomc.dto.CategoriaDTO;
 import com.jmarcostech.cursomc.services.CategoriaService;
 
@@ -58,6 +59,7 @@ public class CategoriaResource {
 		obj = categoriaservice.update(obj);
 		return ResponseEntity.noContent().build();
 	}
+
 	
 	//REQUEST QUE USA O SERVICE PARA DELETAR CATEGORIA POR ID
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
