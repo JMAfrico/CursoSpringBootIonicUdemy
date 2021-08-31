@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -30,7 +31,7 @@ public class Cliente implements Serializable{
 	private Integer tipo;
 	
 
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(mappedBy = "cliente",cascade=CascadeType.ALL)//cascade força o banco deletar os enderecos associados ao cliente, caso ele sejá deletado
 	private List<Endereco> enderecos = new ArrayList<>();
 	
 	@JsonIgnore

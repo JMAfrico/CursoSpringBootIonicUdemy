@@ -54,14 +54,14 @@ public class ClienteService {
 		return clienterepository.save(newobj);
 	}
 		
-	//SERVICE PARA DELETAR CLIENTE SE ELE SE ELA JÁ EXISTIR
+	//SERVICE PARA DELETAR CLIENTE SE ELE SE ELE JÁ EXISTIR, PORÉM SEM PEDIDOS RELACIONADOS
 	public void delete(Integer id) {
 		find(id);
 		try {
 		clienterepository.deleteById(id);
 		}
 		catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível deletar cliente que possui compras efetuadas");
+			throw new DataIntegrityException("Não é possível deletar cliente que possui pedidos efetuados");
 		}
 	}
 		
