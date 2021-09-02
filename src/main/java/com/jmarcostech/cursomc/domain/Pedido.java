@@ -133,7 +133,13 @@ public class Pedido implements Serializable{
 		return true;
 	}
 	
-	
+	public double getTotal() {
+		double soma = 0.0;
+		for(ItemPedido ip: itens) {
+			soma = soma + ip.getSubtotal();
+		}
+		return soma;
+	}
 	
 	
 }

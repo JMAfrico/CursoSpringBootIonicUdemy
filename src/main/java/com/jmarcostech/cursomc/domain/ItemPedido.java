@@ -110,6 +110,9 @@ public class ItemPedido implements Serializable{
 		return true;
 	}
 	
-	
+	//Somente com o 'get' no inicio do método, o subtotal já é serializado no Json, se tirar o get, não funciona
+	public double getSubtotal() {
+		return (preco - desconto) * quantidade;
+	}
 	
 }
